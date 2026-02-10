@@ -31,18 +31,18 @@ class _HomescreenState extends State<Homescreen>
             },
             itemBuilder: (BuildContext context) {
               return [
-                PopupMenuItem(child: Text("New group"), value: "New group"),
+                PopupMenuItem(value: "New group", child: Text("New group")),
                 PopupMenuItem(
-                  child: Text("New broadcast"),
                   value: "New broadcast",
+                  child: Text("New broadcast"),
                 ),
-                PopupMenuItem(child: Text("Whatsap Web"), value: "Whatsap Web"),
+                PopupMenuItem(value: "Whatsap Web", child: Text("Whatsap Web")),
                 PopupMenuItem(
-                  child: Text("Starred messages"),
                   value: "Starred messages",
+                  child: Text("Starred messages"),
                 ),
-                PopupMenuItem(child: Text("Settings"), value: "Settings"),
-                PopupMenuItem(child: Text("Logout"), value: "Logout"),
+                PopupMenuItem(value: "Settings", child: Text("Settings")),
+                PopupMenuItem(value: "Logout", child: Text("Logout")),
               ];
             },
           ),
