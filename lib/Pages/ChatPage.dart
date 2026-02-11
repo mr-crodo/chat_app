@@ -1,5 +1,5 @@
-import 'package:chat_app/CustomUI/CustomCard.dart';
 import 'package:flutter/material.dart';
+import 'package:chat_app/CustomUI/CustomCard.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
