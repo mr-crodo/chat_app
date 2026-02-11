@@ -1,13 +1,13 @@
-import "package:chat_app/Model/ChatModel.dart";
-import "package:flutter/material.dart";
-import "package:flutter_svg/svg.dart";
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:chat_app/Model/ChatModel.dart';
 
 class IndividualPage extends StatefulWidget {
-  IndividualPage({Key? key, required this.chatModel}) : super(key: key);
+  const IndividualPage({super.key, required this.chatModel});
   final ChatModel chatModel;
 
   @override
-  _IndividualPageState createState() => _IndividualPageState();
+  State<IndividualPage> createState() => _IndividualPageState();
 }
 
 class _IndividualPageState extends State<IndividualPage> {
@@ -15,38 +15,61 @@ class _IndividualPageState extends State<IndividualPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 70,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.arrow_back, size: 24),
-              CircleAvatar(
-                child: SvgPicture.asset(
-                  widget.chatModel.iconPath,
-                  color: Colors.white,
-                  width: 38,
-                  height: 38,
-                ),
-                radius: 20,
-                backgroundColor: Colors.blueGrey,
-              ),
-            ],
-          ),
+        titleSpacing: 0, // убираем стандартный отступ слева у title
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, size: 24),
+          onPressed: () => Navigator.pop(context),
         ),
-        title: Column(
+        title: Row(
           children: [
-            Text(
-              widget.chatModel.name,
-              style: TextStyle(fontSize: 18.5, fontWeight: FontWeight.bold),
+            CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.blueGrey,
+              child: SvgPicture.asset(
+                widget.chatModel.iconPath,
+                color: Colors.white,
+                width: 30,
+                height: 30,
+              ),
             ),
-            Text("Last seen today at 12:05"),
+            const SizedBox(width: 10),
+            Container(
+              margin: EdgeInsets.all(5),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.chatModel.name,
+                    style: const TextStyle(
+                      fontSize: 18.5,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Text(
+                    "Last seen today at 12:05",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.video_call),
+            style: IconButton.styleFrom(foregroundColor: Colors.white),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.call),
+            style: IconButton.styleFrom(foregroundColor: Colors.white),
+            onPressed: () {},
+          ),
+          PopupMenuButton(itemBuilder: null),
+        ],
       ),
+      body: const SizedBox.shrink(),
     );
   }
 }
