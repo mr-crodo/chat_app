@@ -15,6 +15,7 @@ class _IndividualPageState extends State<IndividualPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // leadingWidth: 70,
         titleSpacing: 0, // убираем стандартный отступ слева у title
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, size: 24),
@@ -42,7 +43,7 @@ class _IndividualPageState extends State<IndividualPage> {
                   Text(
                     widget.chatModel.name,
                     style: const TextStyle(
-                      fontSize: 18.5,
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -66,7 +67,7 @@ class _IndividualPageState extends State<IndividualPage> {
             style: IconButton.styleFrom(foregroundColor: Colors.white),
             onPressed: () {},
           ),
-          PopupMenuButton(itemBuilder: null),
+          PopupMenuButton(itemBuilder: (context) => []),
         ],
       ),
       body: const SizedBox.shrink(),
