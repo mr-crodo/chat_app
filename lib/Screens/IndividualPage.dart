@@ -14,6 +14,7 @@ class IndividualPage extends StatefulWidget {
 class _IndividualPageState extends State<IndividualPage> {
   bool show = false;
   FocusNode focusNode = FocusNode();
+  TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -148,6 +149,7 @@ class _IndividualPageState extends State<IndividualPage> {
                               borderRadius: BorderRadius.circular(25),
                             ),
                             child: TextFormField(
+                              controller: _controller,
                               focusNode: focusNode,
                               textAlignVertical: TextAlignVertical.center,
                               keyboardType: TextInputType.multiline,
@@ -216,6 +218,13 @@ class _IndividualPageState extends State<IndividualPage> {
               ),
             ],
           ),
+          // canPop: !show, // если show == true, системный back не выйдет со страницы
+          canPop: !show, // если emoji открыт, страницу не закрываем
+          onPopInvokedWithResult: (didPop, result) {
+            if (!didPop && show) {
+              setState(() => show = false); // закрыть emoji
+            }
+          },
         ),
       ),
     );
@@ -223,9 +232,13 @@ class _IndividualPageState extends State<IndividualPage> {
 
   Widget emojiSelect() {
     return EmojiPicker(
-      onEmojiSelected: (emoji, category) {
-        print(emoji);
+      onEmojiSelected: (category, emoji) {
+        _controller.text = _controller.text + emoji.emoji;
+        _controller.selection = TextSelection.fromPosition(
+          TextPosition(offset: _controller.text.length),
+        );
       },
+
       config: Config(emojiViewConfig: const EmojiViewConfig(columns: 7)),
     );
   }
