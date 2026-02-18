@@ -260,6 +260,17 @@ class _IndividualPageState extends State<IndividualPage> {
                   iconCreation(Icons.insert_photo, Colors.purple, "Gallery"),
                 ],
               ),
+              SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  iconCreation(Icons.headset, Colors.orange, "Audio"),
+                  SizedBox(width: 40),
+                  iconCreation(Icons.location_pin, Colors.teal, "Location"),
+                  SizedBox(width: 40),
+                  iconCreation(Icons.person, Colors.blue, "Contact"),
+                ],
+              ),
             ],
           ),
         ),
@@ -267,21 +278,26 @@ class _IndividualPageState extends State<IndividualPage> {
     );
   }
 
+  // Widjet globalnix peremennix dla sozdaniya ikonok v bottomSheet ili skajem dla faylovoy sitemi
   Widget iconCreation(IconData icon, Color color, String text) {
-    return Column(
-      children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundColor: color,
-          child: Icon(
-            // Icons.insert_drive_file,
-            icon,
-            size: 29, // razmer ikonok
-            color: Colors.white,
+    return InkWell(
+      onTap: () {},
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundColor: color,
+            child: Icon(
+              // Icons.insert_drive_file,
+              icon,
+              size: 29, // razmer ikonok
+              color: Colors.white,
+            ),
           ),
-        ),
-        Text(text),
-      ],
+          SizedBox(height: 5),
+          Text(text, style: TextStyle(fontSize: 12)),
+        ],
+      ),
     );
   }
 
